@@ -1,0 +1,201 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2200" height="1640" viewBox="0 0 2200 1640" role="img" aria-labelledby="title desc">
+  <title id="title">Diagrama entidad-relación de las demás entidades de felipe6_local</title>
+  <desc id="desc">Diagrama de usuarios, perros, publicaciones y comentarios, historias y comentarios, amistades, chats, participantes y mensajes.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#64748b"/>
+    </marker>
+    <style>
+      text{font-family:Segoe UI,Arial,sans-serif;fill:#172033}
+      .title{font-size:32px;font-weight:700;fill:#f8fafc}
+      .subtitle{font-size:16px;fill:#cbd5e1}
+      .card{fill:#fff;stroke:#cbd5e1;stroke-width:2;rx:12}
+      .head{fill:#176b67}
+      .entity{font-size:20px;font-weight:700;fill:#fff}
+      .field{font-size:15px}
+      .key{font-weight:700;fill:#075985}
+      .fk{font-weight:700;fill:#a16207}
+      .rel{fill:none;stroke:#64748b;stroke-width:2.4;marker-end:url(#arrow)}
+      .relText{font-size:13px;font-weight:600;fill:#475569}
+      .note{fill:#eff6ff;stroke:#60a5fa;stroke-width:2;rx:10}
+      .noteText{font-size:14px;fill:#1e3a8a}
+      .small{font-size:13px;fill:#475569}
+    </style>
+  </defs>
+  <rect width="2200" height="1640" fill="#f1f5f9"/>
+  <rect width="2200" height="105" fill="#102a43"/>
+  <text x="54" y="48" class="title">Entidades sociales y de contenido | felipe6_local</text>
+  <text x="56" y="78" class="subtitle">Tablas distintas al módulo RBAC · Las relaciones mostradas corresponden a claves foráneas declaradas</text>
+
+  <!-- Relaciones principales: se dibujan detrás de las entidades. -->
+  <path class="rel" d="M400 355 H470"/>
+  <text x="407" y="342" class="relText">1:N perros</text>
+  <path class="rel" d="M400 415 H790 V350 H900"/>
+  <text x="620" y="402" class="relText">1:N autor</text>
+  <path class="rel" d="M400 475 H760 V430 H900"/>
+  <text x="595" y="462" class="relText">0:N propietario</text>
+  <path class="rel" d="M820 355 H900"/>
+  <text x="826" y="342" class="relText">0:N perro</text>
+  <path class="rel" d="M1280 335 H1400"/>
+  <text x="1290" y="322" class="relText">1:N comentarios</text>
+  <path class="rel" d="M400 535 H440 V1015 H470"/>
+  <text x="410" y="570" class="relText">1:N historias</text>
+  <path class="rel" d="M820 1015 H900"/>
+  <text x="825" y="1002" class="relText">1:N comentarios</text>
+  <path class="rel" d="M400 595 H440 V1270 H470"/>
+  <text x="545" y="1254" class="relText">1:N sigue</text>
+  <path class="rel" d="M400 655 H450 V1350 H470"/>
+  <text x="545" y="1355" class="relText">1:N seguido</text>
+  <path class="rel" d="M400 715 H820 V740 H900"/>
+  <text x="535" y="702" class="relText">1:N chat individual</text>
+  <path class="rel" d="M400 750 H850 V515 H1360 V660 H1400"/>
+  <text x="940" y="502" class="relText">1:N participante</text>
+  <path class="rel" d="M400 790 H840 V500 H1360 V920 H1400"/>
+  <text x="940" y="487" class="relText">0:N remitente</text>
+  <path class="rel" d="M400 830 H870 V725 H900"/>
+  <text x="630" y="812" class="relText">0:N último remitente</text>
+  <path class="rel" d="M1280 660 H1400"/>
+  <text x="1290" y="647" class="relText">1:N participantes</text>
+  <path class="rel" d="M1280 850 H1400"/>
+  <text x="1290" y="837" class="relText">1:N mensajes</text>
+  <path class="rel" d="M1280 1015 H1400"/>
+  <text x="1290" y="1002" class="relText">1:N comentario</text>
+  <path class="rel" d="M400 870 H440 V1150 H850 V1015 H900"/>
+  <text x="520" y="1138" class="relText">1:N comentarista de historia</text>
+  <path class="rel" d="M400 910 H430 V140 H1360 V380 H1400"/>
+  <text x="940" y="132" class="relText">1:N comentarista de post</text>
+  <!-- users -->
+  <g>
+    <rect x="40" y="160" width="360" height="820" class="card"/>
+    <path d="M52 160 H388 Q400 160 400 172 V208 H40 V172 Q40 160 52 160" class="head"/>
+    <text x="64" y="192" class="entity">users (cuenta común)</text>
+    <text x="64" y="240" class="field"><tspan class="key">PK</tspan> user_id CHAR(36)</text>
+    <text x="64" y="270" class="field">display_name, email UNIQUE</text>
+    <text x="64" y="300" class="field">password_hash, username UNIQUE</text>
+    <text x="64" y="330" class="field">photo_url, phone_number</text>
+    <text x="64" y="360" class="field">bio, short_description, title</text>
+    <text x="64" y="390" class="field">last_active_time, created_time</text>
+    <text x="64" y="420" class="field">account_status</text>
+    <text x="64" y="450" class="field"><tspan class="fk">FK RBAC</tspan> role_id (fuera de este diagrama)</text>
+    <text x="64" y="505" class="small">Referencia común a contenido,</text>
+    <text x="64" y="528" class="small">perfiles de perros, chats y amistad.</text>
+    <text x="64" y="575" class="small">Las conexiones etiquetan el papel</text>
+    <text x="64" y="598" class="small">del usuario en cada relación.</text>
+  </g>
+
+  <!-- dogs -->
+  <g>
+    <rect x="470" y="240" width="350" height="230" class="card"/>
+    <path d="M482 240 H808 Q820 240 820 252 V288 H470 V252 Q470 240 482 240" class="head"/>
+    <text x="494" y="272" class="entity">dogs</text>
+    <text x="494" y="322" class="field"><tspan class="key">PK</tspan> dog_id CHAR(36)</text>
+    <text x="494" y="352" class="field"><tspan class="fk">FK</tspan> user_association_id CHAR(36)</text>
+    <text x="494" y="382" class="field">dog_name, dog_type, dog_age</text>
+    <text x="494" y="412" class="field">dog_photo_url, dog_bio</text>
+    <text x="494" y="447" class="small">Perro asociado a una cuenta</text>
+  </g>
+
+  <!-- user_posts -->
+  <g>
+    <rect x="900" y="220" width="380" height="260" class="card"/>
+    <path d="M912 220 H1268 Q1280 220 1280 232 V268 H900 V232 Q900 220 912 220" class="head"/>
+    <text x="924" y="252" class="entity">user_posts</text>
+    <text x="924" y="302" class="field"><tspan class="key">PK</tspan> post_id CHAR(36)</text>
+    <text x="924" y="332" class="field"><tspan class="fk">FK</tspan> post_user_id → users (obligatorio)</text>
+    <text x="924" y="362" class="field"><tspan class="fk">FK</tspan> post_owner_id → users (NULL)</text>
+    <text x="924" y="392" class="field"><tspan class="fk">FK</tspan> dog_profile_id → dogs (NULL)</text>
+    <text x="924" y="422" class="field">post_title, post_description, post_photo_url</text>
+    <text x="924" y="452" class="field">time_posted, num_comments, content_status</text>
+  </g>
+
+  <!-- post_comments -->
+  <g>
+    <rect x="1400" y="210" width="390" height="250" class="card"/>
+    <path d="M1412 210 H1778 Q1790 210 1790 222 V258 H1400 V222 Q1400 210 1412 210" class="head"/>
+    <text x="1424" y="242" class="entity">post_comments</text>
+    <text x="1424" y="292" class="field"><tspan class="key">PK</tspan> comment_id CHAR(36)</text>
+    <text x="1424" y="322" class="field"><tspan class="fk">FK</tspan> post_id → user_posts</text>
+    <text x="1424" y="352" class="field"><tspan class="fk">FK</tspan> user_id → users</text>
+    <text x="1424" y="382" class="field">comment, time_posted</text>
+    <text x="1424" y="412" class="field">content_status</text>
+    <text x="1424" y="442" class="small">Un comentario pertenece a un post</text>
+  </g>
+
+  <!-- user_stories -->
+  <g>
+    <rect x="470" y="900" width="350" height="230" class="card"/>
+    <path d="M482 900 H808 Q820 900 820 912 V948 H470 V912 Q470 900 482 900" class="head"/>
+    <text x="494" y="932" class="entity">user_stories</text>
+    <text x="494" y="982" class="field"><tspan class="key">PK</tspan> story_id CHAR(36)</text>
+    <text x="494" y="1012" class="field"><tspan class="fk">FK</tspan> user_id → users</text>
+    <text x="494" y="1042" class="field">story_video_url, story_photo_url</text>
+    <text x="494" y="1072" class="field">story_description, story_posted_at</text>
+    <text x="494" y="1102" class="field">num_comments, expires_at</text>
+  </g>
+
+  <!-- story_comments -->
+  <g>
+    <rect x="900" y="900" width="380" height="230" class="card"/>
+    <path d="M912 900 H1268 Q1280 900 1280 912 V948 H900 V912 Q900 900 912 900" class="head"/>
+    <text x="924" y="932" class="entity">story_comments</text>
+    <text x="924" y="982" class="field"><tspan class="key">PK</tspan> story_comment_id CHAR(36)</text>
+    <text x="924" y="1012" class="field"><tspan class="fk">FK</tspan> story_association_id → user_stories</text>
+    <text x="924" y="1042" class="field"><tspan class="fk">FK</tspan> comment_user_id → users</text>
+    <text x="924" y="1072" class="field">comment, time_posted</text>
+    <text x="924" y="1102" class="small">Un comentario pertenece a una historia</text>
+  </g>
+
+  <!-- friends -->
+  <g>
+    <rect x="470" y="1210" width="350" height="210" class="card"/>
+    <path d="M482 1210 H808 Q820 1210 820 1222 V1258 H470 V1222 Q470 1210 482 1210" class="head"/>
+    <text x="494" y="1242" class="entity">friends (seguimientos)</text>
+    <text x="494" y="1292" class="field"><tspan class="key">PK/FK</tspan> follower_id → users</text>
+    <text x="494" y="1322" class="field"><tspan class="key">PK/FK</tspan> followee_id → users</text>
+    <text x="494" y="1352" class="field">created_at</text>
+    <text x="494" y="1382" class="small">PK compuesta; no permite seguirse a sí mismo</text>
+  </g>
+
+  <!-- chats -->
+  <g>
+    <rect x="900" y="550" width="380" height="230" class="card"/>
+    <path d="M912 550 H1268 Q1280 550 1280 562 V598 H900 V562 Q900 550 912 550" class="head"/>
+    <text x="924" y="582" class="entity">chats</text>
+    <text x="924" y="632" class="field"><tspan class="key">PK</tspan> chat_id CHAR(36)</text>
+    <text x="924" y="662" class="field"><tspan class="fk">FK</tspan> user_a_id, user_b_id → users (NULL)</text>
+    <text x="924" y="692" class="field"><tspan class="fk">FK</tspan> last_message_sent_by → users (NULL)</text>
+    <text x="924" y="722" class="field">group_chat_id (sin FK declarada)</text>
+    <text x="924" y="752" class="field">last_message, last_message_time, created_at</text>
+  </g>
+
+  <!-- chat_participants -->
+  <g>
+    <rect x="1400" y="550" width="390" height="220" class="card"/>
+    <path d="M1412 550 H1778 Q1790 550 1790 562 V598 H1400 V562 Q1400 550 1412 550" class="head"/>
+    <text x="1424" y="582" class="entity">chat_participants</text>
+    <text x="1424" y="632" class="field"><tspan class="key">PK/FK</tspan> chat_id → chats</text>
+    <text x="1424" y="662" class="field"><tspan class="key">PK/FK</tspan> user_id → users</text>
+    <text x="1424" y="692" class="field">joined_at</text>
+    <text x="1424" y="732" class="small">PK compuesta: chat_id + user_id</text>
+  </g>
+
+  <!-- chat_messages -->
+  <g>
+    <rect x="1400" y="800" width="390" height="230" class="card"/>
+    <path d="M1412 800 H1778 Q1790 800 1790 812 V848 H1400 V812 Q1400 800 1412 800" class="head"/>
+    <text x="1424" y="832" class="entity">chat_messages</text>
+    <text x="1424" y="882" class="field"><tspan class="key">PK</tspan> message_id CHAR(36)</text>
+    <text x="1424" y="912" class="field"><tspan class="fk">FK</tspan> chat_id → chats</text>
+    <text x="1424" y="942" class="field"><tspan class="fk">FK</tspan> user_id → users</text>
+    <text x="1424" y="972" class="field">text, image_url, video_url</text>
+    <text x="1424" y="1002" class="field">timestamp</text>
+  </g>
+
+  <rect x="900" y="1210" width="890" height="210" class="note"/>
+  <text x="928" y="1247" class="noteText" font-weight="700">Notas del esquema:</text>
+  <text x="928" y="1277" class="noteText">• chats.group_chat_id no declara FK hacia una tabla de grupos; por eso no se dibuja una relación externa.</text>
+  <text x="928" y="1307" class="noteText">• post_comments y user_stories.num_comments son contadores; no se mantienen automáticamente por una FK.</text>
+  <text x="928" y="1337" class="noteText">• friends representa seguimiento direccional mediante follower_id y followee_id.</text>
+  <text x="928" y="1367" class="noteText">• En user_posts, post_user_id y post_owner_id apuntan ambos a users, con nulabilidad distinta.</text>
+  <text x="40" y="1588" class="small">PK = clave primaria · FK = clave foránea · 1:N = uno a muchos · NULL indica una relación opcional declarada en el esquema.</text>
+</svg>

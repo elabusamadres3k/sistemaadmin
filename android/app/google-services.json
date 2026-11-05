@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1077367182332",
+    "project_id": "felipe6-8e113e",
+    "storage_bucket": "felipe6-8e113e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1077367182332:android:b7be00e476fccffa1e5879",
+        "android_client_info": {
+          "package_name": "com.flutterflow.sniffsocial"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_uMoLp8x7wQyOwaBKGIUK5DgOxlqm76o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

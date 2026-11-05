@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1260" viewBox="0 0 1800 1260" role="img" aria-labelledby="title desc">
+  <title id="title">Diagrama entidad-relación del control de acceso RBAC</title>
+  <desc id="desc">Tablas users, roles, r_usuario_rol, modulo, r_modulo_rol, vistas, permisos, vistas_permiso y auditoria_logs, con sus claves y relaciones.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#64748b"/>
+    </marker>
+    <style>
+      text{font-family:Segoe UI,Arial,sans-serif;fill:#172033}
+      .title{font-size:32px;font-weight:700;fill:#f8fafc}
+      .subtitle{font-size:16px;fill:#cbd5e1}
+      .card{fill:#fff;stroke:#cbd5e1;stroke-width:2;rx:12}
+      .head{fill:#17365d}
+      .entity{font-size:20px;font-weight:700;fill:#fff}
+      .field{font-size:16px}
+      .key{font-weight:700;fill:#075985}
+      .fk{font-weight:700;fill:#a16207}
+      .rel{fill:none;stroke:#64748b;stroke-width:2.5;marker-end:url(#arrow)}
+      .relText{font-size:14px;font-weight:600;fill:#475569}
+      .note{fill:#fff7ed;stroke:#fb923c;stroke-width:2;rx:10}
+      .noteText{font-size:15px;fill:#7c2d12}
+      .small{font-size:14px;fill:#475569}
+    </style>
+  </defs>
+  <rect width="1800" height="1260" fill="#f1f5f9"/>
+  <rect width="1800" height="105" fill="#102a43"/>
+  <text x="54" y="48" class="title">Control de acceso RBAC | felipe6_local</text>
+  <text x="56" y="78" class="subtitle">Diagrama ER de roles, módulos, vistas, permisos y auditoría (MySQL)</text>
+
+  <!-- Relaciones: conectan las tablas existentes y las de autorización. -->
+  <path class="rel" d="M440 305 H505 V600 H350"/>
+  <text x="453" y="292" class="relText">1:N asignaciones</text>
+  <path class="rel" d="M880 340 V500 H900 V540"/>
+  <text x="905" y="485" class="relText">1:N módulo-rol</text>
+  <path class="rel" d="M650 340 V500 H540 V540"/>
+  <text x="550" y="485" class="relText">1:N usuario-rol</text>
+  <path class="rel" d="M430 930 H555 V665 H680"/>
+  <text x="455" y="915" class="relText">1:N asignaciones</text>
+  <path class="rel" d="M1070 645 H1120 V920"/>
+  <text x="1080" y="625" class="relText">1:N reglas</text>
+  <path class="rel" d="M1720 260 H1760 V900 H1550"/>
+  <text x="1768" y="585" class="relText">1:N reglas</text>
+  <path class="rel" d="M1555 690 V830"/>
+  <text x="1565" y="770" class="relText">1:N reglas</text>
+  <path class="rel" d="M260 460 V530"/>
+  <text x="270" y="510" class="relText">1:N eventos</text>
+  <path d="M440 205 H590" fill="none" stroke="#ea580c" stroke-width="2.5" stroke-dasharray="8 7" marker-end="url(#arrow)"/>
+  <text x="448" y="192" class="relText" fill="#c2410c">FK directa actual (1: N)</text>
+
+  <!-- users -->
+  <g>
+    <rect x="80" y="160" width="360" height="300" class="card"/>
+    <path d="M92 160 H428 Q440 160 440 172 V208 H80 V172 Q80 160 92 160" class="head"/>
+    <text x="104" y="192" class="entity">users</text>
+    <text x="104" y="239" class="field"><tspan class="key">PK</tspan> user_id CHAR(36)</text>
+    <text x="104" y="270" class="field">display_name, email UNIQUE</text>
+    <text x="104" y="301" class="field">password_hash, username UNIQUE</text>
+    <text x="104" y="332" class="field"><tspan class="fk">FK</tspan> role_id TINYINT UNSIGNED</text>
+    <text x="104" y="363" class="field">account_status, created_time</text>
+    <text x="104" y="408" class="small">Cuenta de usuario existente</text>
+  </g>
+
+  <!-- roles -->
+  <g>
+    <rect x="590" y="160" width="350" height="180" class="card"/>
+    <path d="M602 160 H928 Q940 160 940 172 V208 H590 V172 Q590 160 602 160" class="head"/>
+    <text x="614" y="192" class="entity">roles</text>
+    <text x="614" y="242" class="field"><tspan class="key">PK</tspan> role_id TINYINT UNSIGNED</text>
+    <text x="614" y="274" class="field">role_name UNIQUE</text>
+    <text x="614" y="310" class="small">Datos actuales: user, admin</text>
+  </g>
+
+  <!-- vista -->
+  <g>
+    <rect x="1390" y="170" width="330" height="180" class="card"/>
+    <path d="M1402 170 H1708 Q1720 170 1720 182 V218 H1390 V182 Q1390 170 1402 170" class="head"/>
+    <text x="1414" y="202" class="entity">vistas</text>
+    <text x="1414" y="252" class="field"><tspan class="key">PK</tspan> id INT</text>
+    <text x="1414" y="284" class="field">nombre_vista</text>
+    <text x="1414" y="316" class="field">ruta_acceso UNIQUE</text>
+  </g>
+
+  <!-- permisos -->
+  <g>
+    <rect x="1390" y="510" width="330" height="180" class="card"/>
+    <path d="M1402 510 H1708 Q1720 510 1720 522 V558 H1390 V522 Q1390 510 1402 510" class="head"/>
+    <text x="1414" y="542" class="entity">permisos</text>
+    <text x="1414" y="592" class="field"><tspan class="key">PK</tspan> id INT</text>
+    <text x="1414" y="624" class="field">nombre_permiso UNIQUE</text>
+    <text x="1414" y="656" class="field">descripcion</text>
+  </g>
+
+  <!-- auditoria -->
+  <g>
+    <rect x="80" y="530" width="360" height="220" class="card"/>
+    <path d="M92 530 H428 Q440 530 440 542 V578 H80 V542 Q80 530 92 530" class="head"/>
+    <text x="104" y="562" class="entity">auditoria_logs</text>
+    <text x="104" y="612" class="field"><tspan class="key">PK</tspan> id INT</text>
+    <text x="104" y="644" class="field"><tspan class="fk">FK</tspan> usuario_id CHAR(36) NULL</text>
+    <text x="104" y="676" class="field">accion, tabla_afectada, registro_id</text>
+    <text x="104" y="708" class="field">fecha_hora</text>
+  </g>
+
+  <!-- r_usuario_rol -->
+  <g>
+    <rect x="350" y="540" width="380" height="180" class="card"/>
+    <path d="M362 540 H718 Q730 540 730 552 V588 H350 V552 Q350 540 362 540" class="head"/>
+    <text x="374" y="572" class="entity">r_usuario_rol</text>
+    <text x="374" y="622" class="field"><tspan class="key">PK</tspan> id INT</text>
+    <text x="374" y="654" class="field"><tspan class="fk">FK</tspan> usuario_id CHAR(36)</text>
+    <text x="374" y="686" class="field"><tspan class="fk">FK</tspan> rol_id TINYINT | UNIQUE(usuario, rol)</text>
+  </g>
+
+  <!-- modulo -->
+  <g>
+    <rect x="80" y="830" width="350" height="200" class="card"/>
+    <path d="M92 830 H418 Q430 830 430 842 V878 H80 V842 Q80 830 92 830" class="head"/>
+    <text x="104" y="862" class="entity">modulo</text>
+    <text x="104" y="912" class="field"><tspan class="key">PK</tspan> id INT</text>
+    <text x="104" y="944" class="field">nombre_modulo UNIQUE</text>
+    <text x="104" y="976" class="field">descripcion, icono, orden</text>
+    <text x="104" y="1008" class="small">Catálogo de módulos</text>
+  </g>
+
+  <!-- r_modulo_rol -->
+  <g>
+    <rect x="680" y="540" width="390" height="200" class="card"/>
+    <path d="M692 540 H1058 Q1070 540 1070 552 V588 H680 V552 Q680 540 692 540" class="head"/>
+    <text x="704" y="572" class="entity">r_modulo_rol</text>
+    <text x="704" y="622" class="field"><tspan class="key">PK</tspan> id INT</text>
+    <text x="704" y="654" class="field"><tspan class="fk">FK</tspan> rol_id TINYINT UNSIGNED</text>
+    <text x="704" y="686" class="field"><tspan class="fk">FK</tspan> modulo_id INT</text>
+    <text x="704" y="718" class="field">habilitado | UNIQUE(rol, módulo)</text>
+  </g>
+
+  <!-- vistas_permiso -->
+  <g>
+    <rect x="1120" y="830" width="430" height="230" class="card"/>
+    <path d="M1132 830 H1538 Q1550 830 1550 842 V878 H1120 V842 Q1120 830 1132 830" class="head"/>
+    <text x="1144" y="862" class="entity">vistas_permiso</text>
+    <text x="1144" y="912" class="field"><tspan class="key">PK</tspan> id INT</text>
+    <text x="1144" y="944" class="field"><tspan class="fk">FK</tspan> r_modulo_rol_id INT</text>
+    <text x="1144" y="976" class="field"><tspan class="fk">FK</tspan> vista_id INT | <tspan class="fk">FK</tspan> permiso_id INT</text>
+    <text x="1144" y="1008" class="field">permitido | UNIQUE(rol-módulo, vista, permiso)</text>
+    <text x="1144" y="1040" class="small">Decisión granular por vista y permiso</text>
+  </g>
+
+  <rect x="80" y="1090" width="1640" height="100" class="note"/>
+  <text x="104" y="1125" class="noteText" font-weight="700">Observación de diseño:</text>
+  <text x="104" y="1153" class="noteText">users.role_id ya apunta a roles y se superpone con r_usuario_rol (que permite varios roles por usuario).</text>
+  <text x="104" y="1178" class="noteText">La relación discontinua marca esa FK directa existente; define una sola estrategia para evitar autorizaciones contradictorias.</text>
+  <text x="80" y="1227" class="small">PK = clave primaria · FK = clave foránea · 1:N = uno a muchos · La auditoría conserva el usuario como NULL al eliminar la cuenta.</text>
+</svg>
